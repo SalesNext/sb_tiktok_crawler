@@ -1,6 +1,6 @@
 from yt_dlp import YoutubeDL
 from typing import Dict
-
+from sb_tiktok_crawler.schema.video import Video
 
 def parse_video_detail(video_url: str) -> Dict:
     ydl_opts = {
@@ -13,6 +13,7 @@ def parse_video_detail(video_url: str) -> Dict:
         
         video = Video(
             video_id=info.get("id"),
+            video_channel_name = info.get("uploader"),
             video_track_id=info.get("track"),
             video_artist=info.get("artist"),
             video_duration = info.get("duration"),
@@ -27,7 +28,5 @@ def parse_video_detail(video_url: str) -> Dict:
             video_upload_date = info.get("upload_date"),
             video_resolution = info.get("resolution"),
             
-            
-        )
-
+        )    
     return video
